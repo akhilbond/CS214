@@ -52,7 +52,8 @@ int main(int argc, char **argv){
     char **sorted = (char **)malloc(number*sizeof(char **));
     int index = 0;
     int temp;
-    for(int counter = 0; counter < number - 1; counter++){
+    int counter;
+    for(counter = 0; counter < number - 1; counter++){
 
     	temp = 0;
 
@@ -61,8 +62,8 @@ int main(int argc, char **argv){
     		temp++;
 
     	}
-
-    	for(int i = 0; i < number - 1; i++){
+    	int i;
+    	for(i = 0; i < number - 1; i++){
 
     		if(strings[i] == NULL){
 
@@ -73,10 +74,11 @@ int main(int argc, char **argv){
     		char test1[strlen(strings[temp])];
     		char test2[strlen(strings[i])];
 
-    		for(int a = 0; a < strlen(strings[temp]); a++){
+    		int a;
+    		for(a = 0; a < strlen(strings[temp]); a++){
     			test1[a] = tolower(strings[temp][a]);
     		}
-    		for(int a = 0; a < strlen(strings[i]); a++){
+    		for(a = 0; a < strlen(strings[i]); a++){
     			test2[a] = tolower(strings[i][a]);
     		}
 
@@ -96,10 +98,10 @@ int main(int argc, char **argv){
     }
 
     free(strings);
+    int print;
+    for(print = 0; print < number - 1; print++){ //Prints out the alphabetically sorted results of the string
 
-    for(int a = 0; a < number - 1; a++){ //Prints out the alphabetically sorted results of the string
-
-    	printf("%s \n", sorted[a]);
+    	printf("%s \n", sorted[print]);
 
     }
 

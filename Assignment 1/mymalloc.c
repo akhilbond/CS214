@@ -1,4 +1,4 @@
-#include <mymalloc.h>
+#include "mymalloc.h"
 #include <stdio.h>
 #define MEMSIZE 5000
 #define ENTRY_SIZE sizeof( MemEntry )
@@ -13,7 +13,7 @@ typedef enum {
         FREE_MIDDLE
 } Error;
 
-static char[MEMSIZE] = {'0'};
+static char mem[MEMSIZE] = {'0'};
 
 typedef struct MemEntry MemEntry;
 typedef struct MemEntry* MemEntryPtr;
@@ -44,7 +44,7 @@ static bool initialized = false;
 // head pointer
 static MemEntryPtr head;
 
-void errorReport(char* file, int caller_line, Error error void* address){
+void errorReport(char* file, int caller_line, Error error, void* address){
         fprintf(stderr, "%s:%d: error: ", file, caller_line);
         switch (error) {
         case MALLOC_INSUFFICIENT:
@@ -66,7 +66,7 @@ void errorReport(char* file, int caller_line, Error error void* address){
 void* myMalloc(unsigned size, char* file, int caller_line){
         if(!initialized) {
                 //initialize the head
-                head = (MemEntryPtr) mem;
+                head = (MemEntryPtr)mem;
                 head->prev = NULL;
                 head->next = NULL;
                 head->isFree = true;

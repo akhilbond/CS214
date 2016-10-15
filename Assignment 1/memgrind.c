@@ -251,7 +251,7 @@ void WorkE() {
 // Case F:
 // 500 times:
 //   mymalloc the size of our buckets n times
-//   if we get a pointer that isn't null after the 5th iteration (only 5 buckets)
+//   if we get a pointer that isn't null after the 5th iteration
 //   we need to break because that memory isn't ours
 //
 //   myfree the mallocs that we made

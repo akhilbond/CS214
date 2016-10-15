@@ -1,0 +1,50 @@
+Testcase 1:
+
+Input:
+      int* a = mymalloc(300);
+	  int* b = mymalloc(200);
+	  char* c = mymalloc(300);
+	  int* d = mymalloc(400);
+	  char* e = mymalloc(1000);
+	  myfree(a);
+	  myfree(c);
+	  myfree(d);
+    
+ Output:
+    N/A
+    
+    
+ Comments: This is an expected output.
+  
+ Testcase 2:
+  
+ Input:
+        int* a = mymalloc(4000000);
+	    int* b = mymalloc(200);
+	    char* c = mymalloc(300);
+	    myfree(a);
+	    myfree(a);
+      
+ Output:
+  Error is calling mymalloc
+  
+  Comments:expected output
+  
+  Testcase 3:
+  
+ Input:
+      int* a = mymalloc(400);
+	    int* b = mymalloc(40);
+	    int* c = mymalloc(4);
+	    int* d = mymalloc(254);
+	    int* e = mymalloc(1);
+	    myfree(a);
+	    myfree(e);
+	    myfree(c);
+   
+  Output:
+      N/A
+      
+Comments:expected output
+    
+    

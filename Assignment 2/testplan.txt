@@ -1,0 +1,26 @@
+Test Plan for CS 214 Assignment 2
+=================================
+
+1)
+Senario: Tested files that don't exist in our directory.
+Expected Result: The program will attempt to open the given file. The program will print an error message and exit if any errors occur.
+
+2)
+Senario: Testing files with incompatable file types
+Expected Result: The program will attempt to open the given file. The program will print an error message and exit if any errors occur.
+
+3)
+Senario: Testing blank files
+Expected Result: The program will open the file and immediately find the end of the file. It will print and error and exit.
+
+4)
+Senario: Testing files with bad characters
+Expected Result: The program will just ignore the bad characters during compression.
+
+5)
+Senario: Testing files with less characters that requested split files
+Expected Result: The program will print and error message and exit the program.
+
+6)
+Senario: Testing splitting the file based on the number of characters -> splitting a file with 10 characters to 10 seperate files
+Expected Result: The program functioned as it was supposed to and printed a file with each individual character.

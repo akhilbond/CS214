@@ -4,7 +4,7 @@
 #define NUM_THREADS   5
 
 void *print_hello(void *threadid) {
-        long tid; //Variable for thrad ID
+        long tid; //Variable for thread ID
         tid = (long)threadid; //Assigns thread ID to tid
         printf("Hello World! Thread %ld!\n", tid); //Prints Hello World and thread ID
         pthread_exit(NULL);//Exits the current thread

@@ -4,14 +4,14 @@
 #include <ctype.h>
 #include <pthread.h>
 
-int char_count(FILE* f) {
+int char_count(FILE* f) {  //method to count the number of characters in the file
 	int count = 0;
 	while (fgetc(f) != EOF) count++;
 	rewind(f);
 	return count;
 }
 
-typedef struct multi{
+typedef struct multi{	//creates a struct of the filename, thread number, start and stop indexes
 
 	char* filename;
 	int number;
@@ -20,13 +20,14 @@ typedef struct multi{
 
 }multi;
 
-void* compressfile(void* ptr){
+void* compressfile(void* ptr){	//method for the child thread
 	
-	multi* args = (multi*) ptr;
-	FILE* f = fopen(args->filename, "r");
-	char* str = malloc(args->stop - args->start + 1);
-	fseek(f, args->start, SEEK_SET);
+	multi* args = (multi*) ptr;	//creates an instance of a struct multi pointer
+	FILE* f = fopen(args->filename, "r");	//creates a file pointer and sets to read
+	char* str = malloc(args->stop - args->start + 1 + 1);	//allocates enough space for the string
+	fseek(f, args->start, SEEK_SET);	//
 	fread(str, args->stop - args->start + 1, 1, f);
+	str[args->stop - args->start + 1] = '\0';
 	fclose(f);
 	
 	int l = strlen(str);
@@ -35,17 +36,18 @@ void* compressfile(void* ptr){
 	int d = 0;
 	for(e = 0; e < l; e++){
 		
-		if(isalpha(str[e]) == 1){
-			
+		if((str[e] >= 'A' && str[e] <= 'Z') || (str[e] >= 'a' && str[e] <= 'z')){
 			string[d] = str[e];
 			d++;
 		
 		}
 	
 	}
+	string[d] = '\0';
 	
 	int length = strlen(string);
 	char* answer = malloc(length+1);
+	answer[0] = '\0';
 	int count = 0;
 	int i;
 	for(i = 0; i < length; i++){

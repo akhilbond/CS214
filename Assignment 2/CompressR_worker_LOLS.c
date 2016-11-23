@@ -12,10 +12,11 @@ int main(int c, char** argv){
 	int stop = atoi(argv[3]);
 	int number = atoi(argv[4]);
 	
-	char* str = malloc(stop - start + 1);
+	char* str = malloc(stop - start + 1 + 1);
 	
 	fseek(f, start, SEEK_SET);
 	fread(str, stop - start + 1, 1, f);
+	str[stop - start + 1] = '\0';
 	fclose(f);
 	
 	int l = strlen(str);
@@ -25,8 +26,8 @@ int main(int c, char** argv){
 	int d = 0;
 	for(e = 0; e < l; e++){
 		
-		if(isalpha(str[e]) == 1){
-			
+		if((str[e] >= 'A' && str[e] <= 'Z') || (str[e] >= 'a' && str[e] <= 'z')){
+		
 			string[d] = str[e];
 			d++;
 		
@@ -36,6 +37,7 @@ int main(int c, char** argv){
 	
 	int length = strlen(string);
 	char* answer = malloc(length+1);
+	answer[0] = '\0';
 	int count = 0;
 	int i;
 	for(i = 0; i < length; i++){

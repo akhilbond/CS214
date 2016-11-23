@@ -1,2 +1,0 @@
-Timed Tests for CS 214 Assignment 2
-===================================

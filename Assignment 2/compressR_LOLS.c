@@ -29,7 +29,6 @@ int main(int argc, char** argv){
 	int remaining = length;
 	int i;
 	for(i = 0; i < num_processes; i++){
-		printf("remaining: %d\n", remaining);
 		printf("%d \n", size);
 		if(remaining >= size){
 		

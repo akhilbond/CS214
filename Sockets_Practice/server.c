@@ -4,6 +4,9 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 
 void error(char *msg)
 {
@@ -15,16 +18,19 @@ int main(int argc, char *argv[])
 {
      int sockfd, newsockfd, portno, clilen;
      char buffer[256];
+     char close[256] = "quit";
      struct sockaddr_in serv_addr, cli_addr;
      int n;
      if (argc < 2) {
          fprintf(stderr,"ERROR, no port provided\n");
          exit(1);
      }
+
      sockfd = socket(AF_INET, SOCK_STREAM, 0);
      if (sockfd < 0)
         error("ERROR opening socket");
      bzero((char *) &serv_addr, sizeof(serv_addr));
+
      portno = atoi(argv[1]);
      serv_addr.sin_family = AF_INET;
      serv_addr.sin_addr.s_addr = INADDR_ANY;
@@ -32,6 +38,7 @@ int main(int argc, char *argv[])
      if (bind(sockfd, (struct sockaddr *) &serv_addr,
               sizeof(serv_addr)) < 0)
               error("ERROR on binding");
+    while((strcmp(buffer,close))){
      listen(sockfd,5);
      clilen = sizeof(cli_addr);
      newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
@@ -41,7 +48,17 @@ int main(int argc, char *argv[])
      n = read(newsockfd,buffer,255);
      if (n < 0) error("ERROR reading from socket");
      printf("Here is the message: %s\n",buffer);
+     printf("Compared to exit condition : %d\n", strcmp(buffer,close)-10);
+
+
+     if(strcmp(buffer,close)-10 == 0){
+       printf("EXIT COMMAND\n");
+       return 0;
+     }
+
+
      n = write(newsockfd,"I got your message",18);
      if (n < 0) error("ERROR writing to socket");
+   }
      return 0;
 }
